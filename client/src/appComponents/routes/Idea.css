@@ -39,7 +39,7 @@
     margin-left: 2vw; 
 }
 .PostUpBox {
-    margin-bottom: -3.5vh;
+    margin-bottom: -2vh;
 }
 .PostDownBox {
     margin-top: -2vh; 
@@ -122,10 +122,11 @@
     width: 80vw; 
 }
 .Comment-user-and-timestamp {
-    display: flex; 
+    display: block;
     position: relative;
-    flex-direction: row; 
-    justify-content: space-between; 
+    text-align: left;
+    /* flex-direction: row;  */
+    /* justify-content: flex-start;  */
 }
 .CommentContainer {
    border: 2px dotted #189b92;

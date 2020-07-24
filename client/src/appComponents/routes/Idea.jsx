@@ -62,12 +62,10 @@ function Idea(props) {
         return (
           <div className="CommentContainer">
             <div className="Comment-user-and-timestamp">
-              <p>
+              <DeleteComment comm={comm} ideaId={ideaId} />
+              <p className="dashboard-comment-timestamp">{converter(comm.createdAt)}<br />
                 <span className="dashboard-comment-name"><strong>{comm.username}</strong></span> commented:
               </p>
-              <DeleteComment comm={comm} ideaId={ideaId} />
-              <p className="dashboard-comment-timestamp">{converter(ideas.createdAt)}</p>
-              <br />
             </div>
             <p className="dashboard-comment-body">{comm.commentBody}</p>
           </div>
@@ -75,7 +73,7 @@ function Idea(props) {
       });
     }
   }
-  const [comment, setComment] = useState({ username: "", commentBody: "" });
+  const [comment, setComment] = useState({ commentBody: "" });
   const [isUpdated, setIsUpdated] = useState(false);
   useEffect(() => {
     const makeAPICall = async () => {
@@ -91,6 +89,7 @@ function Idea(props) {
   const handleChange = (event) => {
     setComment({
       ...comment,
+      username: props.username,
       [event.target.name]: event.target.value,
     });
   };
@@ -100,6 +99,7 @@ function Idea(props) {
       url: `${ideasApi}/comment/${ideaId}`,
       method: "PUT",
       data: comment,
+      username: props.username,
     })
       .then(() => setIsUpdated(true))
       .catch(console.error);
